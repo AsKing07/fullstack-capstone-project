@@ -5,8 +5,10 @@ const connectToDatabase = require('../models/db');
 // Search for gifts
 router.get('/', async (req, res, next) => {
     try {
-        // Task 1: Connect to MongoDB using connectToDatabase database. Remember to use the await keyword and store the connection in `db`
-        // {{insert code here}}
+        // Connect to MongoDB using connectToDatabase database. Remember to use the await keyword and store the connection in `db`
+
+
+        const db = await connectToDatabase();
 
         const collection = db.collection("gifts");
 
@@ -14,13 +16,15 @@ router.get('/', async (req, res, next) => {
         let query = {};
 
         // Add the name filter to the query if the name parameter is not empty
-        // if (/* {{insert code here}} */) {
+        if (req.query.name) {
             query.name = { $regex: req.query.name, $options: "i" }; // Using regex for partial match, case-insensitive
-        // }
+        }
 
         // Task 3: Add other filters to the query
         if (req.query.category) {
-            // {{insert code here}}
+      
+            query.category = req.query.category;
+            
         }
         if (req.query.condition) {
             // {{insert code here}} 
