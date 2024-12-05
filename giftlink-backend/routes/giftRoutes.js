@@ -11,9 +11,10 @@ router.get('/', async (req, res) => {
         const giftCollection = db.collection("gifts");
 
         // Task 3: Fetch all gifts using the collection.find method. Chain with toArray method to convert to JSON array
-        const gifts = giftCollection.find({}).toArray();
+        const gifts = await giftCollection.find({}).toArray();
 
         // Task 4: return the gifts using the res.json method
+        console.log(gifts);
         res.json(gifts);
     } catch (e) {
         console.error('Error fetching gifts:', e);
