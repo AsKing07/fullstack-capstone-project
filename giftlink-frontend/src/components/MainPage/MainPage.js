@@ -27,7 +27,10 @@ function MainPage() {
     }, []);
 
     const goToDetailsPage = (productId) => {
-        navigate(`/app/product/${productId}`);
+            // navigate to the details page
+            navigate(`/app/product/${productId}`);
+
+        
     };
 
     const formatDate = (timestamp) => {
